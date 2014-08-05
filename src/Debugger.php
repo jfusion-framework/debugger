@@ -28,6 +28,25 @@ class Debugger {
 	private $callback = null;
 
 	/**
+	 * @param string $name
+	 *
+	 * @return Debugger
+	 */
+	public static function &getInstance($name)
+	{
+		static $instances;
+
+		if (!isset($instances)) {
+			$instances = array();
+		}
+
+		if (!isset($instances[$name])) {
+			$instances[$name] = new Debugger();
+		}
+		return $instances[$name];
+	}
+
+	/**
 	 * @param string $key
 	 * @param $value
 	 */
